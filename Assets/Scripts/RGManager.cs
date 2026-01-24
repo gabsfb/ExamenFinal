@@ -24,9 +24,33 @@ public class RGManager : MonoBehaviour
         // Alternar estados para pruebas
         if (Input.GetKeyDown(KeyCode.R)) SetRagdollState(true);
         if (Input.GetKeyDown(KeyCode.T)) SetRagdollState(false);
-
+        isJumping();
+        isSliding();
     }
 
+    public void isJumping()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && !isRagdoll)
+        {
+            animator.SetBool("isJumping", true);
+        }
+        else
+        {
+            animator.SetBool("isJumping", false);
+        }
+    }
+
+    public void isSliding()
+    {
+        if (Input.GetKeyDown(KeyCode.DownArrow) && !isRagdoll)
+        {
+            animator.SetBool("isSliding", true);
+        }
+        else
+        {
+            animator.SetBool("isSliding", false);
+        }
+    }
 
     public void SetRagdollState(bool state)
     {
