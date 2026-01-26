@@ -4,5 +4,9 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     public string EnemyName;
+    public float MoveSpeed;
+    public Mesh EnemyMesh;
+
+    public Material material;
 
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a6280d2f5dec745b681bf8721467b3, type: 3}
+  m_Name: StaticSpikeball
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  EnemyName: Basic Enemy
+  MoveSpeed: 0
+  EnemyMesh: {fileID: 145229435979250144, guid: 3c47550989e8e47859e785a4893523e6, type: 3}
+  material: {fileID: 2100000, guid: 99a286c82b204864088a3b360cb4cd36, type: 2}
