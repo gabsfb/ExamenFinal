@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MovingProjectile
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   EnemyName: Basic Enemy
-  MoveSpeed: 7
+  MoveSpeed: 14
   EnemyMesh: {fileID: -4219333817343177906, guid: dcccae8e4d8234e82bebbb88f979ca13, type: 3}
   material: {fileID: 2100000, guid: 99a286c82b204864088a3b360cb4cd36, type: 2}
+  MeshRotation: {x: -90, y: 0, z: 0}

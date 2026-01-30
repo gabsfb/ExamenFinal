@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StaticSpikeball
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   EnemyName: Basic Enemy
-  MoveSpeed: 0
+  MoveSpeed: 6
   EnemyMesh: {fileID: 145229435979250144, guid: 3c47550989e8e47859e785a4893523e6, type: 3}
   material: {fileID: 2100000, guid: 99a286c82b204864088a3b360cb4cd36, type: 2}

@@ -9,4 +9,6 @@ public class EnemyData : ScriptableObject
 
     public Material material;
 
+    public Vector3 MeshRotation;
+
 }
