@@ -48,11 +48,11 @@ Material:
     - _Blend: 0
     - _CastShadows: 0
     - _Cull: 2
-    - _DistortValue: 0.0184
+    - _DistortValue: 0.034
     - _DstBlend: 10
     - _DstBlendAlpha: 10
-    - _FresnelPower: 0.684
-    - _NoiseScale: 300
+    - _FresnelPower: 0.13
+    - _NoiseScale: 200
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5

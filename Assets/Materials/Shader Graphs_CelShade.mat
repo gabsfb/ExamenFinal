@@ -51,15 +51,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BlendOpacity: 0.36
-    - _CellDensity: 117.29
+    - _BlendOpacity: 0.33
+    - _CellDensity: 214.35
     - _NoiseScale: 63.87
     - _QueueControl: 0
     - _QueueOffset: 0
     - _rotatibn: -4.66
     m_Colors:
-    - _Color: {r: 1, g: 0.018810872, b: 0, a: 1}
-    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0, g: 1, b: 0.5761297, a: 1}
+    - _ShadowColor: {r: 0.12631565, g: 0.01775543, b: 0.1792453, a: 1}
     - _Vector2: {r: 26.51, g: 1.35, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

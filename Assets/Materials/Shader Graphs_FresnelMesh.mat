@@ -51,15 +51,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 1.33
+    - _Alpha: 0.91
     - _Clip: 0
-    - _NoiseScale: 30
-    - _OffsetStrength: 0
+    - _NoiseScale: 32.23
+    - _OffsetStrength: -0.08
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 1, g: 0.29797846, b: 0, a: 1}
+    - _Color: {r: 0, g: 0.72492766, b: 1, a: 1}
     - _Speed: {r: 0.5, g: 0, b: 0, a: 0}
-    - _TilingNoise: {r: 1, g: 5, b: 0, a: 0}
+    - _TilingNoise: {r: 3.76, g: 6, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
