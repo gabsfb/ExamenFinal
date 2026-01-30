@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 994776710}
   - component: {fileID: 994776709}
   - component: {fileID: 994776708}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,14 +553,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1351903333662319676, guid: 7156fe38f15759b469c39be96b26dd7b, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 9f874d428177b1d4a94b7bbe83c62872, type: 2}
-    - target: {fileID: 1351903333662319676, guid: 7156fe38f15759b469c39be96b26dd7b, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4909697924107484742, guid: 7156fe38f15759b469c39be96b26dd7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

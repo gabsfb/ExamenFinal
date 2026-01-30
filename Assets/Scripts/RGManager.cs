@@ -1,40 +1,77 @@
 using UnityEngine;
+using System.Collections;
 
 public class RGManager : MonoBehaviour
 {
-    [Header("Configuración")]
-    [SerializeField] private Animator animator;
+    [Header("Configuración Salto")]
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private Rigidbody mainRigidbody;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float groundCheckDistance = 0.2f;
 
+    [Header("Configuración Ragdoll")]
+    [SerializeField] private Animator animator;
     private Rigidbody[] ragdollRigidbodies;
     private Collider[] ragdollColliders;
     private bool isRagdoll = false;
+    private Collider mainCollider;
+
+    [Header("Configuración Slide")]
+    [SerializeField] private float slideHeight = 0.5f;
+    [SerializeField] private float slideCenterY = 0.25f;
+    [SerializeField] private float slideDuration = 1.0f;
+    private float originalHeight;
+    private Vector3 originalCenter;
+    private bool isSlidingActive = false;
 
     void Start()
     {
-        // Obtenemos todos los componentes de los hijos (huesos)
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         ragdollColliders = GetComponentsInChildren<Collider>();
 
-        // Desactivamos el ragdoll al inicio
+        mainCollider = GetComponent<Collider>();
+        if (mainCollider is CapsuleCollider capsule)
+        {
+            originalHeight = capsule.height;
+            originalCenter = capsule.center;
+        }
+
+        if (mainRigidbody == null) mainRigidbody = GetComponent<Rigidbody>();
+
         SetRagdollState(false);
     }
 
     void Update()
     {
-        // Alternar estados para pruebas
         if (Input.GetKeyDown(KeyCode.R)) SetRagdollState(true);
         if (Input.GetKeyDown(KeyCode.T)) SetRagdollState(false);
+
         isJumping();
         isSliding();
     }
 
+    private bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, groundCheckDistance, groundLayer);
+    }
+
     public void isJumping()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isRagdoll)
+        bool grounded = IsGrounded();
+
+        if (Input.GetKeyDown(KeyCode.Space) && !isRagdoll && grounded)
         {
             animator.SetBool("isJumping", true);
+            if (mainRigidbody != null)
+            {
+                mainRigidbody.linearVelocity = new Vector3(mainRigidbody.linearVelocity.x, 0, mainRigidbody.linearVelocity.z);
+                mainRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
         }
-        else
+
+        animator.SetBool("isGrounded", grounded);
+
+        if (Input.GetKeyUp(KeyCode.Space) || !grounded)
         {
             animator.SetBool("isJumping", false);
         }
@@ -42,37 +79,61 @@ public class RGManager : MonoBehaviour
 
     public void isSliding()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow) && !isRagdoll)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && !isRagdoll && !isSlidingActive)
         {
-            animator.SetBool("isSliding", true);
+            StartCoroutine(SlideRoutine());
         }
-        else
+    }
+
+    private IEnumerator SlideRoutine()
+    {
+        isSlidingActive = true;
+        animator.SetBool("isSliding", true);
+
+        if (mainCollider is CapsuleCollider capsule)
         {
-            animator.SetBool("isSliding", false);
+            capsule.height = slideHeight;
+            capsule.center = new Vector3(originalCenter.x, slideCenterY, originalCenter.z);
         }
+
+        yield return new WaitForSeconds(slideDuration);
+
+        if (mainCollider is CapsuleCollider capsuleRestore)
+        {
+            capsuleRestore.height = originalHeight;
+            capsuleRestore.center = originalCenter;
+        }
+
+        animator.SetBool("isSliding", false);
+        isSlidingActive = false;
     }
 
     public void SetRagdollState(bool state)
     {
         isRagdoll = state;
-
-        // 1. Desactivar/Activar el Animator
         animator.enabled = !state;
 
-        // 2. Configurar cada hueso
+        if (state)
+        {
+            StopAllCoroutines();
+            isSlidingActive = false;
+        }
+
+        if (mainRigidbody != null) mainRigidbody.isKinematic = state;
+
         foreach (Rigidbody rb in ragdollRigidbodies)
         {
+            if (rb == mainRigidbody) continue;
             rb.isKinematic = !state;
         }
 
-        // 3. Importante: Los colliders de los huesos deben ignorar al personaje 
-        // o desactivarse para no chocar con el Capsule Collider principal
         foreach (Collider col in ragdollColliders)
         {
+            if (col == mainCollider) continue;
             col.enabled = state;
         }
 
-        // 4. Desactivar el collider principal si existe para que no flote el Ragdoll
-        if (GetComponent<Collider>()) GetComponent<Collider>().enabled = !state;
+        if (mainCollider != null) mainCollider.enabled = !state;
     }
+
 }
