@@ -7,13 +7,11 @@ TagManager:
   - FxTemporaire
   - Obstacle
   - Obstcales
-  - EndZone
-  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - GroundCheck
   - Water
   - UI
   - 
